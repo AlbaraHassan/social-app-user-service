@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Stream;
 
 @RestController
 @RequestMapping("api/user")
@@ -62,6 +63,18 @@ public class UserController {
   @GetMapping("email")
   public Optional<UserModel> getByEmail(@RequestParam String email) {
     return this.userService.getByEmail(email);
+  }
+
+
+  @GetMapping("/search")
+  @Auth
+  public List<UserModel> search(@RequestParam String userName) {
+    return this.userService.search(userName);
+  }
+
+  @GetMapping("/getByUsername")
+  public Optional<UserDTO> getByUsername(@RequestParam String userName) {
+    return this.userService.getByUsername(userName);
   }
 
 }

@@ -41,8 +41,8 @@ public class UserService {
     return this.userRepository.findById(id).map(UserDTO::new);
   }
 
-  public Stream<UserDTO> search(String userName) {
-    return this.userRepository.searchAllByUserNameContains(userName.toLowerCase()).stream().map(UserDTO::new);
+  public List<UserModel> search(String userName) {
+    return this.userRepository.searchAllByUserNameContains(userName.toLowerCase());
   }
 
   public Optional<UserDTO> getByUsername(String userName){
